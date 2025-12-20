@@ -43,7 +43,7 @@ up: ## Start development session (packages, migrations, containers)
 	@echo "🚀 Starting development session..."
 	@echo "📦 Checking Go dependencies..."
 	@if command -v go >/dev/null 2>&1; then \
-		go mod download; \
+		cd backend && go mod download; \
 		echo "✅ Go dependencies ready"; \
 	else \
 		echo "⚠️  Go not installed locally (will use Docker)"; \
@@ -87,9 +87,9 @@ db-create-migration: ## Create new migration (usage: make db-create-migration na
 	fi
 	@echo "📝 Creating migration: $(name)"
 	@if command -v migrate >/dev/null 2>&1; then \
-		migrate create -ext sql -dir migrations $(name); \
+		migrate create -ext sql -dir backend/migrations $(name); \
 	else \
-		docker run --rm -v $(PWD)/migrations:/migrations migrate/migrate create -ext sql -dir /migrations $(name); \
+		docker run --rm -v $(PWD)/backend/migrations:/migrations migrate/migrate create -ext sql -dir /migrations $(name); \
 	fi
 	@echo "✅ Migration created in migrations/ directory"
 
@@ -101,9 +101,9 @@ db-migrate: ## Run pending migrations
 	fi
 	@export $$(grep -v '^#' .env | grep -v '^$$' | xargs) && \
 	if command -v migrate >/dev/null 2>&1; then \
-		migrate -path migrations -database "$$DATABASE_URL" up; \
+		migrate -path backend/migrations -database "$$DATABASE_URL" up; \
 	else \
-		docker run --rm -v $(PWD)/migrations:/migrations --network host migrate/migrate \
+		docker run --rm -v $(PWD)/backend/migrations:/migrations --network host migrate/migrate \
 		-path /migrations -database "postgres://postgres:postgres@localhost:5432/manage?sslmode=disable" up; \
 	fi
 	@echo "✅ Migrations complete"
@@ -116,9 +116,9 @@ db-rollback: ## Rollback last migration
 	fi
 	@export $$(grep -v '^#' .env | grep -v '^$$' | xargs) && \
 	if command -v migrate >/dev/null 2>&1; then \
-		migrate -path migrations -database "$$DATABASE_URL" down 1; \
+		migrate -path backend/migrations -database "$$DATABASE_URL" down 1; \
 	else \
-		docker run --rm -v $(PWD)/migrations:/migrations --network host migrate/migrate \
+		docker run --rm -v $(PWD)/backend/migrations:/migrations --network host migrate/migrate \
 		-path /migrations -database "postgres://postgres:postgres@localhost:5432/manage?sslmode=disable" down 1; \
 	fi
 	@echo "✅ Rollback complete"

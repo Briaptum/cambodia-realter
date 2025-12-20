@@ -2,8 +2,8 @@ package services
 
 import (
 	"errors"
-	"manage/internal/config"
-	"manage/internal/models"
+	"go-vue-base/internal/config"
+	"go-vue-base/internal/models"
 )
 
 type UserService struct{}

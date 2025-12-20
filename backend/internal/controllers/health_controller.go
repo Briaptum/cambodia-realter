@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	"manage/internal/config"
+	"go-vue-base/internal/config"
 
 	"github.com/gin-gonic/gin"
 )

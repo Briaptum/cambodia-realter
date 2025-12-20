@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"manage/internal/controllers"
+	"go-vue-base/internal/controllers"
 
 	"github.com/gin-gonic/gin"
 )

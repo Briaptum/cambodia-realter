@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 
-	"manage/internal/config"
-	"manage/internal/middleware"
-	"manage/internal/routes"
+	"go-vue-base/internal/config"
+	"go-vue-base/internal/middleware"
+	"go-vue-base/internal/routes"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,4 +1,4 @@
-module manage
+module go-vue-base
 
 go 1.22
 
