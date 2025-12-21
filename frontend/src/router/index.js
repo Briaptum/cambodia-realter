@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import components
 import HomePage from '../pages/HomePage.vue'
+import AboutPage from '../pages/AboutPage.vue'
+import ContactPage from '../pages/ContactPage.vue'
 import LoginPage from '../components/LoginPage.vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
 import DashboardPage from '../pages/admin/DashboardPage.vue'
@@ -63,6 +65,16 @@ const router = createRouter({
       component: HomePage
     },
     {
+      path: '/about',
+      name: 'about',
+      component: AboutPage
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: ContactPage
+    },
+    {
       path: '/login',
       name: 'login',
       component: LoginPage
@@ -85,7 +97,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          redirect: 'dashboard'
+          redirect: '/admin/dashboard'
         },
         {
           path: 'dashboard',

@@ -1,36 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-6">
-          <!-- ANHELM Logo -->
-          <div class="flex items-center">
-            <div class="w-8 flex flex-col items-center justify-center mr-2 mb-0.5">
-              <!-- Top two dots -->
-              <div class="flex gap-1.5 mb-0.5">
-                <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-                <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-              </div>
-              <!-- Bottom dot -->
-              <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
-            </div>
-            <h1 class="text-2xl font-light text-zinc-700 tracking-wider leading-tight">ANHELM</h1>
-          </div>
-          
-          <!-- Admin Link -->
-          <router-link 
-            to="/admin" 
-            class="text-sm text-cyan-600 hover:text-cyan-800 font-medium"
-          >
-            Admin Dashboard
-          </router-link>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <MarketingLayout>
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center">
         <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
           Go-Vue Base Template
@@ -39,9 +10,19 @@
           A modern, reusable full-stack template with Go + Gin + GORM backend and Vue.js frontend, 
           featuring Auth0 authentication, contact form system, and admin panel.
         </p>
-        
-        <!-- Features Grid -->
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Template Features</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Everything you need to build modern web applications with Go and Vue.js
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-white p-6 rounded-lg shadow-sm border">
             <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mx-auto mb-4">
               <span class="text-cyan-600 text-xl">🔐</span>
@@ -89,45 +70,42 @@
             <h3 class="text-lg font-semibold text-gray-900 mb-2">Responsive Design</h3>
             <p class="text-gray-600">Mobile-first approach for all interfaces with modern UI components.</p>
           </div>
-        </div>
+      </div>
+    </section>
 
-        <!-- Contact Form Section -->
-        <div class="mt-16 bg-white rounded-lg shadow-sm border p-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Test Contact Form</h2>
-          <div class="max-w-md mx-auto">
-            <ContactForm />
-          </div>
+    <!-- Call to Action Section -->
+    <section class="bg-cyan-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
+        <p class="text-xl text-cyan-100 max-w-2xl mx-auto mb-8">
+          Clone the repository and start building your next project with our modern full-stack template.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <router-link 
+            to="/contact" 
+            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-cyan-600 bg-white hover:bg-gray-50 transition-colors"
+          >
+            Get in Touch
+          </router-link>
+          <router-link 
+            to="/about" 
+            class="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-cyan-600 transition-colors"
+          >
+            Learn More
+          </router-link>
         </div>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex items-center justify-center">
-          <div class="w-5 flex flex-col items-center justify-center mr-1 mb-0.5">
-            <!-- Top two dots -->
-            <div class="flex gap-1 mb-0.5">
-              <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
-              <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
-            </div>
-            <!-- Bottom dot -->
-            <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
-          </div>
-          <span class="text-sm font-light text-zinc-500 tracking-wider leading-tight">ANHELM</span>
-        </div>
-      </div>
-    </footer>
-  </div>
+    </section>
+  </MarketingLayout>
 </template>
 
 <script>
-import ContactForm from '../components/ContactForm.vue'
+import MarketingLayout from '../layouts/MarketingLayout.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    ContactForm
+    MarketingLayout
   }
 }
 </script>
