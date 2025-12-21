@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
 import ContactPage from '../pages/ContactPage.vue'
+import NotFoundPage from '../pages/NotFoundPage.vue'
 import LoginPage from '../components/LoginPage.vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
 import DashboardPage from '../pages/admin/DashboardPage.vue'
@@ -118,6 +119,12 @@ const router = createRouter({
           beforeEnter: requireAuth
         }
       ]
+    },
+    // Catch-all 404 route (must be last)
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFoundPage
     }
   ],
   scrollBehavior(to, from, savedPosition) {
