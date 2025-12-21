@@ -16,6 +16,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Build outputs
+frontend/dist/
+backend/tmp/
+
 # Environment variables
 .env
 .env.local

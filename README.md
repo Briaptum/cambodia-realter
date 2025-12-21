@@ -70,6 +70,61 @@ make stop
    - Frontend: http://localhost:4002 (or your configured port)
    - Backend API: http://localhost:8005 (or your configured port)
 
+## 🚀 Auto-Deployment Setup
+
+### **GitHub Actions Deployment**
+
+The repository includes auto-deployment to production on every push to `master` branch.
+
+#### **Server Setup:**
+1. **Clone repository on server:**
+   ```bash
+   cd /var/www/
+   git clone https://github.com/yourusername/go-vue-base.git go-vue-base.com
+   cd go-vue-base.com
+   ```
+
+2. **Setup production environment:**
+   ```bash
+   cp env.production.example .env
+   # Edit .env with your production values
+   ```
+
+3. **Create external Docker network:**
+   ```bash
+   docker network create anhelm-network
+   ```
+
+#### **GitHub Secrets Configuration:**
+In your GitHub repository settings → Secrets and variables → Actions, add:
+
+- **`DEPLOY_HOST`** - Your server IP address (e.g., `123.456.789.0`)
+- **`DEPLOY_USER`** - SSH username (usually `root`)
+- **`DEPLOY_SSH_KEY`** - Your private SSH key content
+
+#### **SSH Key Setup:**
+```bash
+# On your local machine, generate SSH key if needed
+ssh-keygen -t rsa -b 4096 -C "deploy@go-vue-base"
+
+# Copy public key to server
+ssh-copy-id root@your-server-ip
+
+# Add private key content to GitHub Secrets as DEPLOY_SSH_KEY
+cat ~/.ssh/id_rsa  # Copy this entire content
+```
+
+#### **Deployment Process:**
+1. **Push to master** → Triggers automatic deployment
+2. **Manual deploy** → Use GitHub Actions tab → "Deploy to Production" → "Run workflow"
+
+#### **What happens during deployment:**
+- ✅ **Git pull** latest code from master
+- ✅ **Database migrations** run automatically
+- ✅ **Docker rebuild** with latest code
+- ✅ **Container restart** with zero-downtime
+- ✅ **Health checks** ensure successful deployment
+
 ### Access Your Application
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8080  

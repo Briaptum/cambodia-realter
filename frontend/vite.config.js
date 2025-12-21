@@ -10,5 +10,27 @@ export default defineConfig({
     watch: {
       usePolling: true
     }
+  },
+  build: {
+    // Production build optimizations
+    minify: 'terser', // Use terser for better minification
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        // Manual chunk splitting for better caching
+        manualChunks: {
+          vendor: ['vue', 'vue-router'],
+          fontawesome: [
+            '@fortawesome/fontawesome-svg-core',
+            '@fortawesome/free-solid-svg-icons',
+            '@fortawesome/vue-fontawesome'
+          ]
+        }
+      }
+    },
+    // Compress assets
+    assetsInlineLimit: 4096, // Inline assets smaller than 4kb
+    // Source maps for production debugging (optional)
+    sourcemap: false
   }
 })
