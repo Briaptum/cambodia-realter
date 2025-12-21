@@ -110,7 +110,7 @@
         <main class="flex-1 bg-white overflow-y-auto">
           <div class="py-4 sm:py-6">
             <div class="px-4 sm:px-6">
-              <slot />
+              <router-view :user="user" @logout="$emit('logout')" @login-success="$emit('login-success')" />
             </div>
           </div>
         </main>
