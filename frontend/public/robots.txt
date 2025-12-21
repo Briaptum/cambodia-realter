@@ -1,0 +1,11 @@
+# Robots.txt for Go-Vue Base Template
+User-agent: *
+Allow: /
+Crawl-delay: 60
+
+# Disallow admin routes from search engines
+Disallow: /admin/
+Disallow: /login
+
+# Sitemap (update with your actual domain)
+Sitemap: https://yourdomain.com/sitemap.xml

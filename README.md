@@ -203,3 +203,63 @@ make db-rollback
 - **📱 Responsive Design**: Mobile-first approach for all interfaces
 - **🐳 Docker Ready**: Complete containerized development environment
 - **📊 Clean Architecture**: Separation of concerns with testable business logic
+
+## 🔧 Customization Checklist
+
+When copying this template to create a new site, update these files and settings:
+
+### **1. Environment Configuration**
+- [ ] **`.env`** - Copy from `env.example` or `env.production.example`
+- [ ] **Database settings** - Update `DATABASE_URL`, `DB_NAME`, etc.
+- [ ] **Auth0 configuration** - Set your `AUTH0_DOMAIN`, `AUTH0_CLIENT_ID`, `AUTH0_CLIENT_SECRET`
+- [ ] **Site identification** - Change `SITE_ID` to your project name
+- [ ] **Email settings** - Configure SendGrid `SENDGRID_API_KEY`, `NOTIFICATION_EMAILS`
+- [ ] **Port configuration** - Set unique `BACKEND_PORT` and `FRONTEND_PORT` for production
+
+### **2. Branding & Content**
+- [ ] **`frontend/index.html`** - Update `<title>`, meta descriptions, and Open Graph tags
+- [ ] **`frontend/public/manifest.json`** - Change app `name`, `short_name`, and `description`
+- [ ] **`frontend/public/favicon.png`** - Replace with your logo/favicon (128x128 recommended)
+- [ ] **Site content** - Update homepage, about page, and contact page content
+- [ ] **Company name** - Replace "ANHELM" branding throughout the codebase
+
+### **3. SEO & Robots**
+- [ ] **`frontend/public/robots.txt`** - Update sitemap URL to your domain
+- [ ] **`frontend/public/sitemap.xml`** - Replace `yourdomain.com` with your actual domain
+- [ ] **Sitemap dates** - Update `<lastmod>` dates to current date
+- [ ] **Add pages** - Include any additional pages in sitemap
+
+### **4. Database & Migrations**
+- [ ] **Database name** - Update database references if needed
+- [ ] **Run migrations** - Execute `make db-migrate` on new database
+- [ ] **Seed data** - Add any initial data your site needs
+
+### **5. Docker & Deployment**
+- [ ] **Port conflicts** - Ensure `BACKEND_PORT` and `FRONTEND_PORT` don't conflict with other sites
+- [ ] **Network name** - Update `anhelm-network` in `docker-compose.prod.yml` if needed
+- [ ] **Domain configuration** - Update any domain-specific settings
+
+### **6. Auth0 Setup**
+- [ ] **Create Auth0 application** - Set up new application in Auth0 dashboard
+- [ ] **Configure callbacks** - Set allowed callback URLs for your domain
+- [ ] **User roles** - Set up admin/customer roles and permissions
+- [ ] **App metadata** - Configure user metadata structure
+
+### **7. Email Configuration**
+- [ ] **SendGrid setup** - Create SendGrid account and get API key
+- [ ] **Email templates** - Customize email content in `backend/internal/services/email_service.go`
+- [ ] **From address** - Set appropriate `SMTP_FROM` email address
+- [ ] **Notification recipients** - Update `NOTIFICATION_EMAILS` list
+
+### **8. Git & Version Control**
+- [ ] **Remote repository** - Update git remote to your new repository
+- [ ] **README** - Update this README with project-specific information
+- [ ] **License** - Add appropriate license file
+- [ ] **Initial commit** - Commit your customized version
+
+### **Quick Find & Replace**
+Use these search terms to find places that need customization:
+- `yourdomain.com` - Replace with your actual domain
+- `ANHELM` - Replace with your company/brand name
+- `go-vue-base` - Replace with your project name
+- `Go-Vue Base Template` - Replace with your project title

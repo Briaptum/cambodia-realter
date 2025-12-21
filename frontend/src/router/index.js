@@ -13,18 +13,15 @@ import ContactRequestDetailPage from '../pages/admin/ContactRequestDetailPage.vu
 
 // Auth guard with backend validation
 const requireAuth = async (to, from, next) => {
-  console.log('Auth guard triggered for:', to.path)
   const token = localStorage.getItem('auth_token')
   
   if (!token) {
-    console.log('No token, redirecting to login')
     next('/login')
     return
   }
   
   // Validate token with backend
   try {
-    console.log('Validating token with backend...')
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080'
     const response = await fetch(`${apiUrl}/api/profile`, {
       method: 'GET',
@@ -37,19 +34,16 @@ const requireAuth = async (to, from, next) => {
     if (response.ok) {
       const responseData = await response.json()
       const userData = responseData.user // Extract user from {"user": {...}}
-      console.log('Token valid, user:', userData.email)
       // Update user data in localStorage
       localStorage.setItem('user', JSON.stringify(userData))
       next()
     } else {
-      console.log('Token invalid, clearing auth data and redirecting to login')
       // Clear fake/invalid auth data
       localStorage.removeItem('auth_token')
       localStorage.removeItem('user')
       next('/login')
     }
   } catch (error) {
-    console.log('Auth validation failed:', error.message)
     // Clear auth data on network/validation error
     localStorage.removeItem('auth_token')
     localStorage.removeItem('user')
@@ -137,13 +131,11 @@ const router = createRouter({
 
 // Global navigation guard with backend validation
 router.beforeEach(async (to, from, next) => {
-  console.log('Global guard - navigating to:', to.path)
   const token = localStorage.getItem('auth_token')
   
   // If going to login and have token, validate it first
   if (to.path === '/login' && token) {
     try {
-      console.log('Validating existing token before redirecting...')
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080'
       const response = await fetch(`${apiUrl}/api/profile`, {
         method: 'GET',
@@ -157,18 +149,15 @@ router.beforeEach(async (to, from, next) => {
         const responseData = await response.json()
         const userData = responseData.user // Extract user from {"user": {...}}
         localStorage.setItem('user', JSON.stringify(userData))
-        console.log('Token valid, redirecting to dashboard')
         next('/admin/dashboard')
         return
       } else {
-        console.log('Token invalid, clearing and staying on login')
         localStorage.removeItem('auth_token')
         localStorage.removeItem('user')
         next()
         return
       }
     } catch (error) {
-      console.log('Token validation failed, clearing and staying on login')
       localStorage.removeItem('auth_token')
       localStorage.removeItem('user')
       next()
@@ -178,12 +167,10 @@ router.beforeEach(async (to, from, next) => {
   
   // If going to any admin route without token, redirect to login
   if (to.path.startsWith('/admin') && !token) {
-    console.log('No token for admin route, redirecting to login')
     next('/login')
     return
   }
   
-  console.log('Global guard - allowing navigation')
   next()
 })
 

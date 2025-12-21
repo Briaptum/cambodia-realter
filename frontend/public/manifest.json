@@ -1,0 +1,16 @@
+{
+  "name": "Go-Vue Base Template",
+  "short_name": "ANHELM",
+  "description": "Modern full-stack template with Go + Gin + GORM backend and Vue.js frontend",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#22d3ee",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ]
+}
