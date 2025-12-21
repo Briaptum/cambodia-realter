@@ -1,26 +1,41 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <!-- ANHELM Logo -->
-        <div class="flex items-center justify-center mb-6">
-          <div class="w-12 flex flex-col items-center justify-center mr-2 mb-1">
-            <!-- Top two dots -->
-            <div class="flex gap-2 mb-1">
-              <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
-              <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
-            </div>
-            <!-- Bottom dot -->
-            <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
-          </div>
-          <h1 class="text-3xl font-light text-zinc-700 tracking-wider leading-tight">ANHELM</h1>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative">
+    <!-- ANHELM Watermark Logo - Bottom Left -->
+    <div class="absolute bottom-6 left-6 flex items-center">
+      <div class="w-4 h-4 flex flex-col items-center justify-center mr-2">
+        <!-- Top two dots -->
+        <div class="flex gap-1 mb-0.5">
+          <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
+          <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
         </div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Sign in to your account
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Access the admin dashboard
-        </p>
+        <!-- Bottom dot -->
+        <div class="w-1 h-1 bg-cyan-400 rounded-full"></div>
+      </div>
+      <span class="text-xs font-light text-zinc-500 tracking-wider">ANHELM</span>
+    </div>
+
+    <div class="max-w-md w-full space-y-6">
+      <!-- Customer Logo Section -->
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center mb-8">
+          <!-- ANHELM Logo (dots + text) -->
+          <div class="flex items-center">
+            <div class="w-8 h-8 flex flex-col items-center justify-center mr-3">
+              <!-- Top two dots -->
+              <div class="flex gap-1.5 mb-1">
+                <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+              </div>
+              <!-- Bottom dot -->
+              <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+            </div>
+            <h1 class="text-2xl font-light text-zinc-700 tracking-wider">ANHELM</h1>
+          </div>
+        </div>
+        <div class="mb-2">
+          <h2 class="text-lg font-medium text-zinc-600">Welcome back</h2>
+          <p class="text-sm text-zinc-500 mt-1">Sign in to your account</p>
+        </div>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
         <div class="rounded-md shadow-sm -space-y-px">

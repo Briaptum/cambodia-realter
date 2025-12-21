@@ -32,7 +32,8 @@ const requireAuth = async (to, from, next) => {
     })
     
     if (response.ok) {
-      const userData = await response.json()
+      const responseData = await response.json()
+      const userData = responseData.user // Extract user from {"user": {...}}
       console.log('Token valid, user:', userData.email)
       // Update user data in localStorage
       localStorage.setItem('user', JSON.stringify(userData))
@@ -134,6 +135,9 @@ router.beforeEach(async (to, from, next) => {
       })
       
       if (response.ok) {
+        const responseData = await response.json()
+        const userData = responseData.user // Extract user from {"user": {...}}
+        localStorage.setItem('user', JSON.stringify(userData))
         console.log('Token valid, redirecting to dashboard')
         next('/admin/dashboard')
         return
