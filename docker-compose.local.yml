@@ -20,20 +20,20 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "8080:8080"
+      - "${BACKEND_PORT:-8080}:8080"  # Host port from env, defaults to 8080 -> Container port 8080
     env_file:
       - .env
-    environment:
-      # Override specific values for Docker environment
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/go_vue_base?sslmode=disable
-      - SMTP_HOST=mailhog
-      - SMTP_PORT=1025
     volumes:
-      - ./backend:/app
+      - ./backend/internal:/app/internal
+      - ./backend/main.go:/app/main.go
+      - ./backend/go.mod:/app/go.mod
+      - ./backend/go.sum:/app/go.sum
       - /app/tmp
     depends_on:
       postgres:
         condition: service_healthy
+      mailhog:
+        condition: service_started
     restart: unless-stopped
 
   frontend:
@@ -45,15 +45,12 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    env_file:
-      - .env
     environment:
-      # Override specific values for Docker environment
       - CHOKIDAR_USEPOLLING=true
-      - VITE_API_URL=http://localhost:8080
+      - NODE_ENV=${NODE_ENV:-development}
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:8080}
     restart: unless-stopped
 
-  # MailHog for local email testing
   mailhog:
     image: mailhog/mailhog:latest
     ports:

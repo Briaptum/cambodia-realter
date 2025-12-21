@@ -2,7 +2,7 @@
 
 # Default target
 help: ## Show available commands
-	@echo "🚀 Manage App - Development Commands"
+	@echo "🚀 Go-Vue Base Template - Development Commands (Local Environment)"
 	@echo ""
 	@echo "📋 Main Commands:"
 	@echo "   make setup     - First time setup (migrations, seed data, etc.)"
@@ -17,6 +17,7 @@ help: ## Show available commands
 	@echo "🌐 Your app will be available at:"
 	@echo "   Frontend: http://localhost:3000"
 	@echo "   Backend:  http://localhost:8080"
+	@echo "   MailHog:  http://localhost:8026 (for viewing emails in local dev)"
 
 # First time setup - run once when cloning repo
 setup: ## First time setup (migrations, seed data, environment)
@@ -29,7 +30,7 @@ setup: ## First time setup (migrations, seed data, environment)
 		echo "✅ Environment file already exists"; \
 	fi
 	@echo "🐳 Starting database..."
-	@docker-compose up -d postgres
+	@docker-compose -f docker-compose.local.yml up -d postgres
 	@echo "⏳ Waiting for database to be ready..."
 	@sleep 5
 	@echo "🗄️  Running migrations..."
@@ -49,13 +50,13 @@ up: ## Start development session (packages, migrations, containers)
 		echo "⚠️  Go not installed locally (will use Docker)"; \
 	fi
 	@echo "🐳 Starting database..."
-	@docker-compose up -d postgres
+	@docker-compose -f docker-compose.local.yml up -d postgres
 	@echo "⏳ Waiting for database to be ready..."
 	@sleep 5
 	@echo "🗄️  Running any pending migrations..."
 	@$(MAKE) db-migrate
 	@echo "🐳 Starting all services..."
-	@docker-compose up --build -d
+	@docker-compose -f docker-compose.local.yml up --build -d
 	@echo ""
 	@echo "🎉 All services started successfully!"
 	@echo ""
@@ -72,12 +73,12 @@ up: ## Start development session (packages, migrations, containers)
 # Stop services (non-destructive)
 stop: ## Stop all services (non-destructive)
 	@echo "🛑 Stopping all services..."
-	@docker-compose stop
+	@docker-compose -f docker-compose.local.yml stop
 	@echo "✅ All services stopped. Data preserved."
 
 # View logs
 logs: ## View logs from all services
-	@docker-compose logs -f
+	@docker-compose -f docker-compose.local.yml logs -f
 
 # Database migration commands
 db-create-migration: ## Create new migration (usage: make db-create-migration name=create_users)

@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "${BACKEND_PORT:-8005}:8080"  # Host port from env, defaults to 8005 -> Container port 8080
+    env_file:
+      - .env
+    environment:
+      - GIN_MODE=${GIN_MODE:-release}
+    volumes:
+      - /app/tmp
+    networks:
+      - anhelm-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "${FRONTEND_PORT:-4002}:80"  # Host port from env, defaults to 4002 -> Container port 80 (nginx)
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - VITE_API_URL=${VITE_API_URL}
+    networks:
+      - anhelm-network
+    restart: unless-stopped
+
+networks:
+  anhelm-network:
+    external: true

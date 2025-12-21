@@ -48,6 +48,28 @@ make up
 make stop
 ```
 
+### Production Deployment
+
+1. **Setup production environment:**
+   ```bash
+   cp env.production.example .env
+   # Edit .env with your production values (database, Auth0, SendGrid, etc.)
+   ```
+
+2. **Create external network (first time only):**
+   ```bash
+   docker network create anhelm-network
+   ```
+
+3. **Deploy with production compose:**
+   ```bash
+   docker-compose -f docker-compose.prod.yml up --build -d
+   ```
+
+4. **Access your application:**
+   - Frontend: http://localhost:4002 (or your configured port)
+   - Backend API: http://localhost:8005 (or your configured port)
+
 ### Access Your Application
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8080  
