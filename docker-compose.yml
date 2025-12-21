@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-manage}
+      POSTGRES_DB: ${POSTGRES_DB:-go_vue_base}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
@@ -21,10 +21,13 @@ services:
       dockerfile: Dockerfile.backend
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
-      - DATABASE_URL=${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/manage?sslmode=disable}
-      - PORT=${PORT:-8080}
-      - GIN_MODE=${GIN_MODE:-debug}
+      # Override specific values for Docker environment
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/go_vue_base?sslmode=disable
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
     volumes:
       - ./backend:/app
       - /app/tmp
@@ -42,10 +45,20 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    env_file:
+      - .env
     environment:
+      # Override specific values for Docker environment
       - CHOKIDAR_USEPOLLING=true
-      - NODE_ENV=${NODE_ENV:-development}
-      - VITE_API_URL=${VITE_API_URL:-http://localhost:8080}
+      - VITE_API_URL=http://localhost:8080
+    restart: unless-stopped
+
+  # MailHog for local email testing
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1026:1025"  # SMTP server (mapped to avoid conflicts)
+      - "8026:8025"  # Web UI (mapped to avoid conflicts)
     restart: unless-stopped
 
 volumes:

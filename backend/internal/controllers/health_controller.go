@@ -19,7 +19,7 @@ func NewHealthController() *HealthController {
 func (hc *HealthController) HealthCheck(c *gin.Context) {
 	response := gin.H{
 		"status": "ok",
-		"service": "manage-api",
+		"service": "go-vue-base-api",
 	}
 
 	// Check database connection
