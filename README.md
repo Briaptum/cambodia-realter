@@ -1,11 +1,11 @@
-# Go-Vue Base
+# Cambodia Realter
 
 A modern, reusable full-stack template with Go + Gin + GORM backend and Vue.js frontend, featuring Auth0 authentication, contact form system, and admin panel.
 
 ## 🏗️ Project Structure
 
 ```
-go-vue-base/
+cambodia-realter/
 ├── backend/                         # Go backend
 │   ├── main.go                      # Application entry point
 │   ├── internal/                    # Private application code
@@ -80,8 +80,8 @@ The repository includes auto-deployment to production on every push to `master` 
 1. **Clone repository on server:**
    ```bash
    cd /var/www/
-   git clone https://github.com/yourusername/go-vue-base.git go-vue-base.com
-   cd go-vue-base.com
+   git clone https://github.com/yourusername/cambodia-realter.git cambodia-realter.com
+   cd cambodia-realter.com
    ```
 
 2. **Setup production environment:**
@@ -105,7 +105,7 @@ In your GitHub repository settings → Secrets and variables → Actions, add:
 #### **SSH Key Setup:**
 ```bash
 # On your local machine, generate SSH key if needed
-ssh-keygen -t rsa -b 4096 -C "deploy@go-vue-base"
+ssh-keygen -t rsa -b 4096 -C "deploy@cambodia-realter"
 
 # Copy public key to server
 ssh-copy-id root@your-server-ip
@@ -140,7 +140,7 @@ Create a `.env` file in the root directory with these variables:
 DB_HOST=postgres
 DB_USER=postgres
 DB_PASSWORD=postgres
-DB_NAME=go_vue_base
+DB_NAME=cambodia_realter
 DB_PORT=5432
 DB_SSLMODE=disable
 
@@ -149,12 +149,12 @@ AUTH0_DOMAIN=your-auth0-domain.auth0.com
 AUTH0_CLIENT_ID=your-auth0-client-id
 AUTH0_CLIENT_SECRET=your-auth0-client-secret
 JWT_SECRET=your-jwt-secret-key
-SITE_ID=go-vue-base
+SITE_ID=cambodia-realter
 
 # Email Configuration
 SMTP_HOST=mailhog
 SMTP_PORT=1025
-SMTP_FROM=noreply@go-vue-base.com
+SMTP_FROM=noreply@cambodia-realter.com
 NOTIFICATION_EMAILS=admin@example.com
 
 # For production, use SendGrid instead:
@@ -316,5 +316,5 @@ When copying this template to create a new site, update these files and settings
 Use these search terms to find places that need customization:
 - `yourdomain.com` - Replace with your actual domain
 - `ANHELM` - Replace with your company/brand name
-- `go-vue-base` - Replace with your project name
+- `cambodia-realter` - Replace with your project name
 - `Go-Vue Base Template` - Replace with your project title

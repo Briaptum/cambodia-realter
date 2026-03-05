@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 
-	"go-vue-base/internal/config"
-	"go-vue-base/internal/middleware"
-	"go-vue-base/internal/routes"
+	"cambodia-realter/internal/config"
+	"cambodia-realter/internal/middleware"
+	"cambodia-realter/internal/routes"
 
 	"github.com/gin-gonic/gin"
 )

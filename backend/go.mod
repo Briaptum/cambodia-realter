@@ -1,4 +1,4 @@
-module go-vue-base
+module cambodia-realter
 
 go 1.22
 

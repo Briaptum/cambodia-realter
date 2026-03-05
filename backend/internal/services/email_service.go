@@ -40,7 +40,7 @@ func NewEmailService() *EmailService {
 		smtpPort:     getEnv("SMTP_PORT", "587"),
 		smtpUser:     getEnv("SMTP_USER", ""),
 		smtpPassword: getEnv("SMTP_PASS", ""),
-		fromEmail:    getEnv("SMTP_FROM", getEnv("SMTP_USER", "noreply@go-vue-base.com")),
+		fromEmail:    getEnv("SMTP_FROM", getEnv("SMTP_USER", "noreply@cambodia-realter.com")),
 		
 		// SendGrid API config
 		sendgridAPIKey: sendgridAPIKey,

@@ -105,7 +105,7 @@ db-migrate: ## Run pending migrations
 		migrate -path backend/migrations -database "$$DATABASE_URL" up; \
 	else \
 		docker run --rm -v $(PWD)/backend/migrations:/migrations --network host migrate/migrate \
-		-path /migrations -database "postgres://postgres:postgres@localhost:5432/go_vue_base?sslmode=disable" up; \
+		-path /migrations -database "postgres://postgres:postgres@localhost:5432/cambodia_realter?sslmode=disable" up; \
 	fi
 	@echo "✅ Migrations complete"
 
@@ -120,6 +120,6 @@ db-rollback: ## Rollback last migration
 		migrate -path backend/migrations -database "$$DATABASE_URL" down 1; \
 	else \
 		docker run --rm -v $(PWD)/backend/migrations:/migrations --network host migrate/migrate \
-		-path /migrations -database "postgres://postgres:postgres@localhost:5432/go_vue_base?sslmode=disable" down 1; \
+		-path /migrations -database "postgres://postgres:postgres@localhost:5432/cambodia_realter?sslmode=disable" down 1; \
 	fi
 	@echo "✅ Rollback complete"

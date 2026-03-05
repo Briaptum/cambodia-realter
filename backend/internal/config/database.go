@@ -31,7 +31,7 @@ func InitDatabase() {
 	
 	dbname := os.Getenv("DB_NAME")
 	if dbname == "" {
-		dbname = "go_vue_base"
+		dbname = "cambodia_realter"
 	}
 	
 	port := os.Getenv("DB_PORT")

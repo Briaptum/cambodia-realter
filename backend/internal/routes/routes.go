@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"go-vue-base/internal/controllers"
-	"go-vue-base/internal/middleware"
+	"cambodia-realter/internal/controllers"
+	"cambodia-realter/internal/middleware"
 
 	"github.com/gin-gonic/gin"
 )

@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	"go-vue-base/internal/config"
+	"cambodia-realter/internal/config"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +19,7 @@ func NewHealthController() *HealthController {
 func (hc *HealthController) HealthCheck(c *gin.Context) {
 	response := gin.H{
 		"status": "ok",
-		"service": "go-vue-base-api",
+		"service": "cambodia-realter-api",
 	}
 
 	// Check database connection

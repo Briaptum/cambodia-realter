@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"go-vue-base/internal/config"
-	"go-vue-base/internal/models"
-	"go-vue-base/internal/services"
+	"cambodia-realter/internal/config"
+	"cambodia-realter/internal/models"
+	"cambodia-realter/internal/services"
 
 	"github.com/gin-gonic/gin"
 )
